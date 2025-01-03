@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const Schema = mongoose.Schema
 
 const defaultBudget = {
     Housing: 0,
@@ -10,7 +11,7 @@ const defaultBudget = {
     Miscellaneous: 0,
 };
 
-const userSchema = mongoose.Schema({
+const userSchema = new Schema({
     name: {type: String, required: true},
     balance: {type: String, required: true},
     budget: {type: Object, default: defaultBudget}
