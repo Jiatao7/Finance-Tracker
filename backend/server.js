@@ -1,8 +1,9 @@
+//Modules
+const express = require('express')
+const transactionRoutes = require('./routes/transactions')
 require('dotenv').config()
 
-const express = require('express')
-
-// Express
+//Initialize app
 const app = express()
 
 // Middleware
@@ -12,9 +13,7 @@ app.use((req, res, next) => {
 })
 
 // Routes
-app.get('/', (req, res) => {
-  res.json({mssg: 'Welcome to the app'})
-})
+app.use("/api/transactions", transactionRoutes)
 
 // Listen for requests
 app.listen(process.env.PORT, () => {
