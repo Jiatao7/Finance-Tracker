@@ -5,12 +5,15 @@ import App from './App';
 
 //Context
 import { UserContextProvider } from './context/UserContext';
+import { TransactionContextProvider } from './context/TransactionContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  //<React.StrictMode>
     <UserContextProvider>
-      <App />
+      <TransactionContextProvider>
+        <App />
+      </TransactionContextProvider>
     </UserContextProvider>
-  </React.StrictMode>
+  //</React.StrictMode>
 );

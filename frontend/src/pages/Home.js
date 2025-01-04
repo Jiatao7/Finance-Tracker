@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom'
 import { useUserContext } from '../context/UserContext'
+import { useTransactionContext } from '../context/TransactionContext'
 
 export default function Home() {
-    const {user, dispatch} = useUserContext()
+    const {user} = useUserContext()
+    const {transactions} = useTransactionContext()
+    
     console.log(user)
+    console.log(transactions)
 
     return (
         <div className='bg-gray-100 w-fit p-6 rounded-2xl'>

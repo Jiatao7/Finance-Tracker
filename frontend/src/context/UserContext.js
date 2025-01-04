@@ -1,6 +1,5 @@
 import {createContext, useContext, useReducer} from "react"
 
-
 //Create Context
 export const UserContext = createContext()
 
