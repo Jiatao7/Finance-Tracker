@@ -17,8 +17,6 @@ export const useUserContext = () => {
 const UserReducer = (state, action) => {
     switch(action.type) {
         case "set":
-            console.log({user: action.payload})
-            console.log(state)
             return {user: action.payload}   //payload is data
         default:
             return state
@@ -27,7 +25,7 @@ const UserReducer = (state, action) => {
 
 //Create provider for context
 export const UserContextProvider = ({children}) => {
-    const [state, dispatch] = useReducer(UserReducer, {user: null})
+    const [state, dispatch] = useReducer(UserReducer, {user: {name: "", balance: 0}})
 
     return (
         <UserContext.Provider value={{...state, dispatch}}>

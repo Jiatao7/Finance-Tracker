@@ -27,7 +27,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Navbar />
-        <div className='pages p-6'>
+        <div className='pages m-16'>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/transactions' element={<Transactions />} />
