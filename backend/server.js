@@ -1,7 +1,9 @@
 //Modules
 const express = require('express')
 const mongoose = require('mongoose')
+const userRoutes = require('./routes/users')
 const transactionRoutes = require('./routes/transactions')
+
 require('dotenv').config()
 
 //Initialize app
@@ -15,6 +17,7 @@ app.use((req, res, next) => {
 })
 
 // Routes
+app.use("/api/users", userRoutes)
 app.use("/api/transactions", transactionRoutes)
 
 //Connect to database and listen for requests

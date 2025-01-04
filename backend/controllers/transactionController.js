@@ -1,6 +1,5 @@
 const mongoose = require("mongoose")
 const Transaction = require('../models/transactionModel')
-const User = require('../models/userModel')
 
 // GET all transactions
 const getTransactions = async (req, res) => {

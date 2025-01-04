@@ -14,7 +14,8 @@ const defaultBudget = {
 const userSchema = new Schema({
     name: {type: String, required: true},
     balance: {type: String, required: true},
-    budget: {type: Object, default: defaultBudget}
+    budget: {type: Object, default: defaultBudget},
+    new: {type: Boolean, default: true}
 })
 
 const User = mongoose.model("User", userSchema)
