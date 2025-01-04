@@ -9,7 +9,7 @@ const {getTransactions, getUserTransactions, getTransaction, createTransaction, 
 router.get('/', getTransactions)
 
 // GET all Transactions from a SINGLE USER
-router.get('/user', getUserTransactions)
+router.get('/user/:id', getUserTransactions)
 
 // GET a single Transaction
 router.get('/:id', getTransaction)

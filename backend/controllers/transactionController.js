@@ -9,7 +9,7 @@ const getTransactions = async (req, res) => {
 
 // GET all transactions from a SINGLE USER
 const getUserTransactions = async (req, res) => {
-    const id = req.body.userId
+    const id = req.params.id        //user id
     const transactions = await Transaction.find({userId: id}).sort({Date: -1})
     res.status(200).json(transactions)
 }
