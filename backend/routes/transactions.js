@@ -3,10 +3,13 @@ const express = require("express")
 const router = express.Router()
 
 //Import controller
-const {getTransactions, getTransaction, createTransaction, deleteTransaction, updateTransaction} = require("../controllers/transactionController")
+const {getTransactions, getUserTransactions, getTransaction, createTransaction, deleteTransaction, updateTransaction} = require("../controllers/transactionController")
 
 // GET all Transactions
 router.get('/', getTransactions)
+
+// GET all Transactions from a SINGLE USER
+router.get('/user', getUserTransactions)
 
 // GET a single Transaction
 router.get('/:id', getTransaction)

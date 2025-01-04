@@ -7,6 +7,13 @@ const getTransactions = async (req, res) => {
     res.status(200).json(transactions)
 }
 
+// GET all transactions from a SINGLE USER
+const getUserTransactions = async (req, res) => {
+    const id = req.body.userId
+    const transactions = await Transaction.find({userId: id}).sort({Date: -1})
+    res.status(200).json(transactions)
+}
+
 // GET a single transaction
 const getTransaction = async (req, res) => {
     const id = req.params.id
@@ -36,4 +43,4 @@ const updateTransaction = async (req, res) => {
     res.status(200).json(transaction)
 }
 
-module.exports = {getTransactions, getTransaction, createTransaction, deleteTransaction, updateTransaction}
+module.exports = {getTransactions, getUserTransactions, getTransaction, createTransaction, deleteTransaction, updateTransaction}
