@@ -15,7 +15,7 @@ export const useUserContext = () => {
 //Create reducer
 const UserReducer = (state, action) => {
     switch(action.type) {
-        case "set":
+        case "SET":
             return {user: action.payload}   //payload is data
         default:
             return state

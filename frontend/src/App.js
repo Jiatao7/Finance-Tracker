@@ -22,7 +22,7 @@ function App() {
     const fetchUser = async() => {
       const result = await fetch(`/api/users/${guestId}`)
       const data = await result.json()
-      userDispatch({type: "set", payload: data}) 
+      userDispatch({type: "SET", payload: data}) 
     }
     fetchUser()
 
@@ -30,7 +30,7 @@ function App() {
     const fetchTransactions = async() => {
       const result = await fetch(`/api/transactions/user/${guestId}`)
       const data = await result.json()
-      transactionDispatch({type: "set", payload: data}) 
+      transactionDispatch({type: "SET", payload: data}) 
     }
     fetchTransactions()
   }, [])

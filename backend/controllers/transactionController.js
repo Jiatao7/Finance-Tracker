@@ -3,14 +3,14 @@ const Transaction = require('../models/transactionModel')
 
 // GET all transactions
 const getTransactions = async (req, res) => {
-    const transactions = await Transaction.find().sort({Date: -1})
+    const transactions = await Transaction.find().sort({date: -1})
     res.status(200).json(transactions)
 }
 
 // GET all transactions from a SINGLE USER
 const getUserTransactions = async (req, res) => {
     const id = req.params.id        //user id
-    const transactions = await Transaction.find({userId: id}).sort({Date: -1})
+    const transactions = await Transaction.find({userId: id}).sort({date: -1})
     res.status(200).json(transactions)
 }
 
@@ -23,9 +23,13 @@ const getTransaction = async (req, res) => {
 
 // POST a new transaction
 const createTransaction = async (req, res) => {
-    const data = req.body;
-    const transaction = await Transaction.create(data)
-    res.status(200).json(transaction)
+    try {
+        const data = req.body;
+        const transaction = await Transaction.create(data)
+        res.status(200).json(transaction)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
 }
   
 // DELETE a transaction

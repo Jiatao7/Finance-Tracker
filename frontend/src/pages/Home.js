@@ -3,9 +3,11 @@ import { useUserContext } from '../context/UserContext'
 import { useTransactionContext } from '../context/TransactionContext'
 
 export default function Home() {
-    const {user} = useUserContext()
-    const {transactions} = useTransactionContext()
-    
+    const user = useUserContext().user;
+    const userDispatch = useUserContext().dispatch;
+    const transactions = useTransactionContext().transactions;
+    const transactionDispatch = useTransactionContext().dispatch;
+
     console.log(user)
     console.log(transactions)
 

@@ -5,8 +5,10 @@ import { useUserContext } from "../context/UserContext"
 import { useTransactionContext } from "../context/TransactionContext"
 
 export default function Transactions() {
-    const {user, userDispatch} = useUserContext()
-    const {transactions, transactionDispatch} = useTransactionContext()
+    const user = useUserContext().user;
+    const userDispatch = useUserContext().dispatch;
+    const transactions = useTransactionContext().transactions;
+    const transactionDispatch = useTransactionContext().dispatch;
     
     console.log(transactions)
 

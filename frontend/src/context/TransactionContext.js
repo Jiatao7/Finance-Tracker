@@ -15,8 +15,10 @@ export const useTransactionContext = () => {
 //Create reducer
 const TransactionReducer = (state, action) => {
     switch(action.type) {
-        case "set":
+        case "SET":
             return {transactions: action.payload}   //payload is data
+        case "ADD":
+            return {transactions: [action.payload, ...state.transactions]}   //payload is new transaction
         default:
             return state
     }
