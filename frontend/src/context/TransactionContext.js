@@ -25,7 +25,7 @@ const TransactionReducer = (state, action) => {
 //Create provider for context
 export const TransactionContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(TransactionReducer, {
-        transactions: {description: ""}
+        transactions: []
     })
 
     return (

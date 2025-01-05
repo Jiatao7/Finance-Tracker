@@ -8,16 +8,18 @@ export default function Transactions() {
     const {user, userDispatch} = useUserContext()
     const {transactions, transactionDispatch} = useTransactionContext()
     
+    console.log(transactions)
+
+    const transactionCards = transactions.map((transaction => 
+        <TransactionCard transaction={transaction} key={transaction._id}/>
+    ))
+
 
     return (
-        <>
-            <h2>Transactions</h2>
-            
-
-
-
+        <div className="p-6">
+            <h2 className='text-lg font-semibold mb-8'>Transactions</h2>
             <TranscationForm />
-            <TransactionCard transaction={transactions}/>        
-        </>
+            {transactionCards}     
+        </div>
     )
 }
