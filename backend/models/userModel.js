@@ -13,7 +13,7 @@ const defaultBudget = {
 
 const userSchema = new Schema({
     name: {type: String, required: true},
-    balance: {type: String, required: true},
+    balance: {type: Number, required: true},
     budget: {type: Object, default: defaultBudget},
     new: {type: Boolean, default: true}
 })

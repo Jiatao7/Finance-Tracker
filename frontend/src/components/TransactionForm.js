@@ -15,7 +15,7 @@ export default function TransactionForm () {
         const userId = user._id
         const description = formData.get('description')
         const type = formData.get('type')
-        const amount = formData.get('amount')
+        const amount = Number(formData.get('amount'))
         const category = formData.get('category')
 
         const newTransaction = {userId, description, type, amount, category}
@@ -28,7 +28,21 @@ export default function TransactionForm () {
             setError("Please fill in all fields")
         } else {
             setError(null)
+            //Add Transaction
             transactionDispatch({type: "ADD", payload: result})
+
+            //Change balance in React
+            const change = (type === "Income" ? amount : -amount)
+            const newBalance = user.balance + change
+
+
+            console.log("Amount: ", typeof(user.balance))
+            console.log("New: ", typeof(newBalance))
+
+            userDispatch({type: "CHANGE_BALANCE", payload: newBalance})
+
+            //Change balance in Database
+            const response = await fetch(`/api/users/${user._id}`, {method: "PATCH", headers: {"Content-Type": "application/json"}, body: JSON.stringify({balance: newBalance})})
         }
         
     }

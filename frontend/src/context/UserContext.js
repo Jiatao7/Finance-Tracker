@@ -17,6 +17,9 @@ const UserReducer = (state, action) => {
     switch(action.type) {
         case "SET":
             return {user: action.payload}   //payload is data
+        case "CHANGE_BALANCE":
+            console.log(state)
+            return( {user: {...state.user, balance: action.payload}} )       //payload is new balance
         default:
             return state
     }
