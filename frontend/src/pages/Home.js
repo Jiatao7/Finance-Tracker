@@ -20,4 +20,4 @@ export default function Home() {
             <Link className="text-lg bg-yellow-400 rounded-lg p-2" to="/transactions">View All Transactions</Link>
         </div>
     )
-}
+}   
