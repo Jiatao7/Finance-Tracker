@@ -11,8 +11,6 @@ export default function Home() {
     console.log(user)
     console.log(transactions)
 
-    
-
     return (
         <div className='bg-gray-100 w-fit p-6 rounded-2xl'>
             <h2 className='text-2xl font-bold mb-8'>{user ? user.name : null}</h2>

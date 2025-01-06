@@ -1,5 +1,7 @@
+import SummaryCard from "../components/SummaryCard"
+
 export default function Overview() {
     return (
-        <h2>Overview</h2>
+        <SummaryCard/>
     )
 }
