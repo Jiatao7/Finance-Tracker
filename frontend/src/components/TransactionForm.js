@@ -9,14 +9,14 @@ export default function TransactionForm () {
     const userDispatch = useUserContext().dispatch;
     const transactions = useTransactionContext().transactions;
     const transactionDispatch = useTransactionContext().dispatch;
-
+    
 
     async function handleSubmit(formData) {
         const userId = user._id
         const description = formData.get('description')
         const type = formData.get('type')
         const amount = Number(formData.get('amount'))
-        const category = formData.get('category')
+        const category = (type === "Income" ? "Salary" : formData.get("category"))
 
         const newTransaction = {userId, description, type, amount, category}
         console.log(newTransaction)

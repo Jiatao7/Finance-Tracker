@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
 const transactionCategories = [
-    "Income",
+    "Salary",
     "Housing",
     "Transportation",
     "Food",
