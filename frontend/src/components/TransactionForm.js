@@ -54,8 +54,8 @@ export default function TransactionForm () {
     
 
     return (
-        <form className="bg-white rounded-lg py-6 mb-10 max-w-lg space-y-4" action={handleSubmit} >
-            <h3 className="text-xl font-bold text-gray-800 mb-4">Add a New Transaction</h3>
+        <form className="bg-white rounded-lg shadow-2xl p-6 mb-16 max-w-lg space-y-4 mx-auto" action={handleSubmit} >
+            <h3 className="text-xl font-bold text-gray-800 mb-8 text-center">Add a New Transaction</h3>
 
             <label htmlFor="description" className="block text-sm font-medium text-gray-700" >
                 Transaction Description

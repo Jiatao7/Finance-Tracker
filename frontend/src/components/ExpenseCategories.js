@@ -43,7 +43,7 @@ export default function ExpenseGraph() {
     
 
     return (
-        <div className="bg-white shadow-lg rounded-2xl p-6 max-w-lg">
+        <div className="bg-white shadow-lg rounded-2xl p-6 max-w-lg m-auto">
             <h3 className="text-xl font-bold text-gray-800 mb-4">Categories of Expenses</h3>
             <ul className="space-y-2">
                 <li className="flex justify-between border-b pb-2">

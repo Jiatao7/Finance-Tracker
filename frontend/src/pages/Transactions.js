@@ -20,7 +20,7 @@ export default function Transactions() {
     return (
         <div className="p-6">
             <TranscationForm />
-            <h3 className="text-xl font-bold text-gray-800 mb-4">All Transactions</h3>
+            <h3 className="text-xl font-bold text-center text-gray-800 mb-4">All Transactions</h3>
             {transactionCards}     
         </div>
     )
