@@ -1,11 +1,11 @@
 import SummaryCard from "../components/SummaryCard"
-import ExpenseGraph from "../components/Expenses"
+import Expenses from "../components/Expenses"
 
 export default function Statistics() {
     return (
         <>
             <SummaryCard/>
-            <ExpenseGraph/>
+            <Expenses/>
         </>
         
     )

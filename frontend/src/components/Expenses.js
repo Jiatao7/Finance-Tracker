@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react';
 import { useUserContext } from '../context/UserContext'
 import { useTransactionContext } from '../context/TransactionContext'
 
-export default function ExpenseGraph() {
+import ExpensesChart from "./ExpensesChart"
+
+export default function Expenses() {
     const user = useUserContext().user;
     const userDispatch = useUserContext().dispatch;
     const transactions = useTransactionContext().transactions;
@@ -32,7 +34,6 @@ export default function ExpenseGraph() {
 
         transactions.forEach(t => {
             if(t.type === "Expense") {
-                c.housing++ 
                 c[t.category.toLowerCase()] += t.amount
             }
         });
@@ -43,38 +44,42 @@ export default function ExpenseGraph() {
     
 
     return (
-        <div className="bg-white shadow-lg rounded-2xl p-6 max-w-lg m-auto">
-            <h3 className="text-xl font-bold text-gray-800 mb-4">Categories of Expenses</h3>
-            <ul className="space-y-2">
-                <li className="flex justify-between border-b pb-2">
-                <span className="font-medium text-gray-700">Housing:</span>
-                <span className="text-gray-900">${categories.housing}</span>
-                </li>
-                <li className="flex justify-between border-b pb-2">
-                <span className="font-medium text-gray-700">Transportation:</span>
-                <span className="text-gray-900">${categories.transportation}</span>
-                </li>
-                <li className="flex justify-between border-b pb-2">
-                <span className="font-medium text-gray-700">Food:</span>
-                <span className="text-gray-900">${categories.food}</span>
-                </li>
-                <li className="flex justify-between border-b pb-2">
-                <span className="font-medium text-gray-700">Healthcare:</span>
-                <span className="text-gray-900">${categories.healthcare}</span>
-                </li>
-                <li className="flex justify-between border-b pb-2">
-                <span className="font-medium text-gray-700">Entertainment:</span>
-                <span className="text-gray-900">${categories.entertainment}</span>
-                </li>
-                <li className="flex justify-between border-b pb-2">
-                <span className="font-medium text-gray-700">Education:</span>
-                <span className="text-gray-900">${categories.education}</span>
-                </li>
-                <li className="flex justify-between">
-                <span className="font-medium text-gray-700">Miscellaneous:</span>
-                <span className="text-gray-900">${categories.miscellaneous}</span>
-                </li>
-            </ul>
+        <div className='flex justify-between items-center mx-32'>
+            <div className="bg-white shadow-lg rounded-2xl p-6 flex-grow mr-40">
+                <h3 className="text-xl font-bold text-gray-800 mb-6">Categories of Expenses</h3>
+                <ul className="space-y-2">
+                    <li className="flex justify-between border-b pb-4">
+                    <span className="font-medium text-gray-700">Housing:</span>
+                    <span className="text-gray-900">${categories.housing}</span>
+                    </li>
+                    <li className="flex justify-between border-b pb-4">
+                    <span className="font-medium text-gray-700">Transportation:</span>
+                    <span className="text-gray-900">${categories.transportation}</span>
+                    </li>
+                    <li className="flex justify-between border-b pb-4">
+                    <span className="font-medium text-gray-700">Food:</span>
+                    <span className="text-gray-900">${categories.food}</span>
+                    </li>
+                    <li className="flex justify-between border-b pb-4">
+                    <span className="font-medium text-gray-700">Healthcare:</span>
+                    <span className="text-gray-900">${categories.healthcare}</span>
+                    </li>
+                    <li className="flex justify-between border-b pb-4">
+                    <span className="font-medium text-gray-700">Entertainment:</span>
+                    <span className="text-gray-900">${categories.entertainment}</span>
+                    </li>
+                    <li className="flex justify-between border-b pb-4">
+                    <span className="font-medium text-gray-700">Education:</span>
+                    <span className="text-gray-900">${categories.education}</span>
+                    </li>
+                    <li className="flex justify-between">
+                    <span className="font-medium text-gray-700">Miscellaneous:</span>
+                    <span className="text-gray-900">${categories.miscellaneous}</span>
+                    </li>
+                </ul>
+            </div>
+
+            <ExpensesChart categories={categories} label="Amount Spent"></ExpensesChart>
         </div>
     )
 }
