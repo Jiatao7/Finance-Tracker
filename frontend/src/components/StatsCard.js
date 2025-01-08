@@ -17,7 +17,7 @@ export default function StatsCard({title, data, money}) {
     }
     
     return (
-        <div className="bg-white shadow-lg rounded-2xl p-6 flex-grow mr-40">
+        <div className="bg-white shadow-lg rounded-2xl p-6 flex-grow mr-32">
             <h3 className="text-xl font-bold text-gray-800 mb-6">{title}</h3>
             <ul className="space-y-2">
                 {entryList}

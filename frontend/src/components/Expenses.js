@@ -71,11 +71,11 @@ export default function Expenses() {
 
     return (
         <>
-            <div className='flex justify-between items-center mx-32 my-8'>
+            <div className='flex justify-between items-center my-8'>
                 <StatsCard title="Expense Categories by Amount Spent" data={categories} money={true}/>
                 <ExpensesChart categories={categories} label="Amount Spent"></ExpensesChart>
             </div>
-            <div className='flex justify-between items-center mx-32 my-8'>
+            <div className='flex justify-between items-center my-8'>
                 <StatsCard title="Expense Categories by Transactions" data={categoriesCount}/>
                 <ExpensesChart categories={categoriesCount} label="# of Transactions" money={false}></ExpensesChart>
             </div>
