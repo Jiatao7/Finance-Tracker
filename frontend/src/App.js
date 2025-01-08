@@ -7,7 +7,7 @@ import { useTransactionContext } from './context/TransactionContext'
 import Home from './pages/Home'
 import Transactions from './pages/Transactions'
 import Budget from './pages/Budget'
-import Overview from './pages/Overview'
+import Statistics from './pages/Statistics'
 
 import Navbar from './components/Navbar'
 
@@ -44,7 +44,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/transactions' element={<Transactions />} />
             <Route path='/budget' element={<Budget />} />
-            <Route path='/overview' element={<Overview />} />
+            <Route path='/statistics' element={<Statistics />} />
           </Routes>
         </div>  
       </BrowserRouter>

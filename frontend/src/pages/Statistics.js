@@ -1,7 +1,7 @@
 import SummaryCard from "../components/SummaryCard"
-import ExpenseGraph from "../components/ExpenseCategories"
+import ExpenseGraph from "../components/Expenses"
 
-export default function Overview() {
+export default function Statistics() {
     return (
         <>
             <SummaryCard/>
