@@ -8,7 +8,7 @@ export default function ExpenseChart({categories, label}) {
     let chartLabels = []
     let chartData = []
     for (const [key, value] of Object.entries(categories)) {
-        chartLabels.push(key)
+        chartLabels.push(key.charAt(0).toUpperCase() + key.slice(1))
         chartData.push(value)
     }
       

@@ -37,6 +37,6 @@ export default function SummaryCard() {
             <h3 className='text-lg mb-6'>Income: <span className='text-lg font-semibold text-green-500'>{income}</span></h3>
             <h3 className='text-lg mb-6'>Expenses: <span className='text-lg font-semibold text-red-500'>{expenses}</span></h3>
             <h3 className='text-lg mb-6'>Net: <span className={`text-lg font-bold ${net > 0 ? "text-green-600" : (net < 0 ? "text-red-600" : "")}`}>{net}</span></h3>
-        </div>
+        </div>  
     )
 }
