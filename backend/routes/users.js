@@ -3,7 +3,13 @@ const express = require("express")
 const router = express.Router()
 
 //Import controller
-const {getUsers, getUser, createUser, deleteUser, updateUser} = require("../controllers/userController")
+const {login, signup, getUsers, getUser, createUser, deleteUser, updateUser} = require("../controllers/userController")
+
+// Login
+router.get('/login', login)
+
+// Signup
+router.get('/signup', signup)
 
 // GET all Users
 router.get('/', getUsers)

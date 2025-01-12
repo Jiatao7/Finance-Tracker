@@ -12,6 +12,8 @@ const defaultBudget = {
 };
 
 const userSchema = new Schema({
+    username: {type: String, required: true, unique: true},
+    password: {type: String, required: true},
     name: {type: String, required: true},
     balance: {type: Number, required: true},
     budget: {type: Object, default: defaultBudget},

@@ -1,6 +1,16 @@
 const mongoose = require("mongoose")
 const User = require('../models/userModel')
 
+// Login
+const login = async (req, res) => {
+    res.json({mssg: "LOGIN"})
+}
+
+// Signup
+const signup = async (req, res) => {
+    res.json({mssg: "SIGNUP"})
+}
+
 // GET all users
 const getUsers = async (req, res) => {
     const users = await User.find()
@@ -36,4 +46,4 @@ const updateUser = async (req, res) => {
     res.status(200).json(user)
 }
 
-module.exports = {getUsers, getUser, createUser, deleteUser, updateUser}
+module.exports = {login, signup, getUsers, getUser, createUser, deleteUser, updateUser}
