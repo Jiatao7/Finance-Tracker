@@ -5,6 +5,8 @@ import { useTransactionContext } from './context/TransactionContext'
 
 //Pages and Components
 import Home from './pages/Home'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
 import Transactions from './pages/Transactions'
 import Budget from './pages/Budget'
 import Statistics from './pages/Statistics'
@@ -42,6 +44,8 @@ function App() {
         <div className='pages m-16'>
           <Routes>
             <Route path='/' element={<Home />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<Signup />} />
             <Route path='/transactions' element={<Transactions />} />
             <Route path='/budget' element={<Budget />} />
             <Route path='/statistics' element={<Statistics />} />

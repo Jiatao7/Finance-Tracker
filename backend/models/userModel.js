@@ -17,7 +17,7 @@ const defaultBudget = {
 const userSchema = new Schema({
     username: {type: String, required: true, unique: true},
     password: {type: String, required: true},
-    name: {type: String},
+    name: {type: String, required: true},
     balance: {type: Number, default: 0},
     budget: {type: Object, default: defaultBudget},
     new: {type: Boolean, default: true}
@@ -46,7 +46,6 @@ userSchema.statics.login = async function (username, password) {
     }
     
     return user
-    
 }
 
 userSchema.statics.signup = async function (username, password) {
@@ -72,7 +71,7 @@ userSchema.statics.signup = async function (username, password) {
     const hash = await bcrypt.hash(password, salt)
 
     //Create account
-    const user = await this.create({ username, password: hash })
+    const user = await this.create({ username, password: hash, name: username })
     return user
 }
 
