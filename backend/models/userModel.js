@@ -22,6 +22,17 @@ const userSchema = new Schema({
 })
 
 userSchema.statics.signup = async function (username, password) {
+    //Check if valid username and password
+    if(!username) {
+        throw Error('Please enter an username')
+    } else if(!password) {
+        throw Error('Please enter a password')
+    } else if(username.length < 4 || username.length > 20) {
+        throw Error('Username must be between 4 to 20 characters long')
+    } else if(password.length < 8) {
+        throw Error('Password must be at least 8 characters long')
+    }
+    
     //Check if username already exists
     const exists = await this.findOne({ username })
     if (exists) {
