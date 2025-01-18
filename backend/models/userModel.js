@@ -2,6 +2,7 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 const bcrypt = require('bcrypt')
 
+
 const defaultBudget = {
     Housing: 0,
     Transportation: 0,
@@ -11,6 +12,7 @@ const defaultBudget = {
     Education: 0,
     Miscellaneous: 0,
 };
+
 
 const userSchema = new Schema({
     username: {type: String, required: true, unique: true},
