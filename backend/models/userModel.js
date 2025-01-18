@@ -23,6 +23,32 @@ const userSchema = new Schema({
     new: {type: Boolean, default: true}
 })
 
+userSchema.statics.login = async function (username, password) {
+    //Check if username and password entered
+    if(!username) {
+        throw Error('Please enter an username')
+    } else if(!password) {
+        throw Error('Please enter a password')
+    }
+
+    //Check if username valid
+    const user = await this.findOne({ username })
+    if(!user) {
+        throw Error('Username not in database')
+    }
+
+    //Check if password is correct
+    console.log(password)
+    console.log(user.password)
+    const correctPassword = await bcrypt.compare(password, user.password)
+    if(!correctPassword) {
+        throw Error('Incorrect password')
+    }
+    
+    return user
+    
+}
+
 userSchema.statics.signup = async function (username, password) {
     //Check if valid username and password
     if(!username) {
@@ -43,7 +69,7 @@ userSchema.statics.signup = async function (username, password) {
 
     //Hash password
     const salt = await bcrypt.genSalt(10)
-    const hash = await bcrypt.hash(username, salt)
+    const hash = await bcrypt.hash(password, salt)
 
     //Create account
     const user = await this.create({ username, password: hash })
