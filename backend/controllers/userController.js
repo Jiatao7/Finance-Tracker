@@ -8,7 +8,14 @@ const login = async (req, res) => {
 
 // Signup
 const signup = async (req, res) => {
-    res.json({mssg: "SIGNUP"})
+    const {username, password} = req.body
+
+    try {
+        const user = await User.signup(username, password)
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
 }
 
 // GET all users
