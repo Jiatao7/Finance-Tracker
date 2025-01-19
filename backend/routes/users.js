@@ -6,10 +6,10 @@ const router = express.Router()
 const {login, signup, getUsers, getUser, createUser, deleteUser, updateUser} = require("../controllers/userController")
 
 // Login
-router.get('/login', login)
+router.post('/login', login)
 
 // Signup
-router.get('/signup', signup)
+router.post('/signup', signup)
 
 // GET all Users
 router.get('/', getUsers)
