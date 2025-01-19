@@ -14,6 +14,8 @@ export const useUserContext = () => {
 
 //Create reducer
 const UserReducer = (state, action) => {
+    console.log(action.payload)
+
     switch(action.type) {
         case "CHANGE_BALANCE":
             console.log(state)
@@ -21,7 +23,7 @@ const UserReducer = (state, action) => {
         default:
             return state
         case "LOGIN":
-            return action.payload  //payload is data
+            return {user: action.payload}  //payload is data
         case "LOGOUT":
             return {user: null, token: null}
     }
@@ -33,10 +35,14 @@ export const UserContextProvider = ({children}) => {
     
     useEffect(() => {    
         //Set user data
-        const data = JSON.parse(localStorage.getItem('data'))
-
-        if(data) {
-            dispatch({type: "LOGIN", payload: data})
+        const username = localStorage.getItem('username')
+        if(username) {
+            const fetchUser = async() => {
+                const result = await fetch(`/api/users/username/${username}`)
+                const data = await result.json()
+                dispatch({type: "LOGIN", payload: data}) 
+            }    
+            fetchUser()
         }
     }, [])
 

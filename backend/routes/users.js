@@ -3,7 +3,7 @@ const express = require("express")
 const router = express.Router()
 
 //Import controller
-const {login, signup, getUsers, getUser, createUser, deleteUser, updateUser} = require("../controllers/userController")
+const {login, signup, getUsers, getUser, getUserByUsername, createUser, deleteUser, updateUser} = require("../controllers/userController")
 
 // Login
 router.post('/login', login)
@@ -16,6 +16,10 @@ router.get('/', getUsers)
 
 // GET a single User
 router.get('/:id', getUser)
+
+// GET a single User by Username
+router.get('/username/:username', getUserByUsername)
+
 
 // POST a new User
 router.post('/', createUser)

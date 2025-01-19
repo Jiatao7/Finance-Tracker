@@ -47,6 +47,13 @@ const getUser = async (req, res) => {
     res.status(200).json(user)
 }
 
+// GET a single user by username
+const getUserByUsername = async (req, res) => {
+    const username = req.params.username
+    const user = await User.findOne({username})
+    res.status(200).json(user)
+}
+
 // POST a new user
 const createUser = async (req, res) => {
     const data = req.body;
@@ -69,4 +76,4 @@ const updateUser = async (req, res) => {
     res.status(200).json(user)
 }
 
-module.exports = {login, signup, getUsers, getUser, createUser, deleteUser, updateUser}
+module.exports = {login, signup, getUsers, getUser, getUserByUsername, createUser, deleteUser, updateUser}

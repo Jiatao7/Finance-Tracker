@@ -5,7 +5,8 @@ export const useLogout = () => {
 
   const logout = async (username, password) => {
     // remove the user from local storage
-    localStorage.removeItem('data')
+    localStorage.removeItem('username')
+    localStorage.removeItem('token')
 
     // update the auth context
     dispatch({type: 'LOGOUT'})
