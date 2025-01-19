@@ -1,7 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
-import { useEffect } from "react"
 import { useUserContext } from './context/UserContext'
-import { useTransactionContext } from './context/TransactionContext'
 
 //Pages and Components
 import Home from './pages/Home'
@@ -15,30 +13,6 @@ import Navbar from './components/Navbar'
 
 function App() {
   const user = useUserContext().user
-  const userDispatch = useUserContext().dispatch
-  const transactionDispatch = useTransactionContext().dispatch
-
-  useEffect(() => {
-    const guestId = "67797fe6e381cf8e59450303"
-
-    /*
-    //Set user data
-    const fetchUser = async() => {
-      const result = await fetch(`/api/users/${guestId}`)
-      const data = await result.json()
-      userDispatch({type: "SET", payload: data}) 
-    }
-    fetchUser()
-    */
-
-    //Set transactions data
-    const fetchTransactions = async() => {
-      const result = await fetch(`/api/transactions/user/${guestId}`)
-      const data = await result.json()
-      transactionDispatch({type: "SET", payload: data}) 
-    }
-    fetchTransactions()
-  }, [])
 
   return (
     <div className="App">

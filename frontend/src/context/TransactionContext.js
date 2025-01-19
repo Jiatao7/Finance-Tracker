@@ -1,4 +1,5 @@
-import {createContext, useContext, useReducer} from "react"
+import {createContext, useContext, useReducer, useEffect} from "react"
+import { useUserContext } from "./UserContext"
 
 //Create Context
 export const TransactionContext = createContext()
@@ -30,8 +31,26 @@ export const TransactionContextProvider = ({children}) => {
         transactions: []
     })
 
+    const {user} = useUserContext()
+
+    useEffect(() => {
+        if(user) {
+            //Set transactions data
+            const fetchTransactions = async() => {
+                const result = await fetch(`/api/transactions/user/${user._id}`)
+                const data = await result.json()
+                dispatch({type: "SET", payload: data}) 
+            }
+            fetchTransactions()
+        } else {
+            dispatch({type: "SET", payload: null}) 
+        }
+    }, [user])
+
+    console.log("TransactionContext: ", state)
+
     return (
-        <TransactionContext.Provider value={{...state, dispatch}}>
+        <TransactionContext.Provider value={{...state, transactionDispatch: dispatch}}>
             {children}
         </TransactionContext.Provider> 
     )

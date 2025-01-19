@@ -15,41 +15,35 @@ export const useUserContext = () => {
 //Create reducer
 const UserReducer = (state, action) => {
     switch(action.type) {
-        case "SET":
-            return {user: action.payload}   //payload is data
         case "CHANGE_BALANCE":
             console.log(state)
             return( {user: {...state.user, balance: action.payload}} )       //payload is new balance
         default:
             return state
         case "LOGIN":
-            return {user: action.payload}  //payload is data
+            return action.payload  //payload is data
         case "LOGOUT":
-            return {user: null}
-
+            return {user: null, token: null}
     }
 }
 
 //Create provider for context
 export const UserContextProvider = ({children}) => {
-    const [state, dispatch] = useReducer(UserReducer, {user: null})
-
-    console.log("UserContext: ", state)
+    const [state, dispatch] = useReducer(UserReducer, {user: null, token: null})
     
     useEffect(() => {    
         //Set user data
-        const user = JSON.parse(localStorage.getItem('user'))
+        const data = JSON.parse(localStorage.getItem('data'))
 
-        if(user) {
-            dispatch({type: "LOGIN", payload: user})
+        if(data) {
+            dispatch({type: "LOGIN", payload: data})
         }
-        console.log(user)
-
     }, [])
 
+    console.log("UserContext: ", state)
 
     return (
-        <UserContext.Provider value={{...state, dispatch}}>
+        <UserContext.Provider value={{...state, userDispatch: dispatch}}>
             {children}
         </UserContext.Provider> 
     )

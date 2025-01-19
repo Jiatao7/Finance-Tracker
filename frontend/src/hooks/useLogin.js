@@ -4,7 +4,7 @@ import { useUserContext } from '../context/UserContext'
 export const useLogin = () => {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(null)
-  const { dispatch } = useUserContext()
+  const dispatch = useUserContext().userDispatch
 
   const login = async (username, password) => {
     setIsLoading(true)
@@ -23,7 +23,7 @@ export const useLogin = () => {
     }
     if (response.ok) {
       // save the user to local storage
-      localStorage.setItem('user', JSON.stringify(json))
+      localStorage.setItem('data', JSON.stringify(json))
 
       // update the auth context
       dispatch({type: 'LOGIN', payload: json})
