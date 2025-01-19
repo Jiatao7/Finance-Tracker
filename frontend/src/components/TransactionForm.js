@@ -1,15 +1,14 @@
 
-import {useState} from "react"
+import { useState } from "react"
 import { useUserContext } from "../context/UserContext"
 import { useTransactionContext } from "../context/TransactionContext"
 
 export default function TransactionForm () {
     const [error, setError] = useState(null)
     const [currentType, setCurrentType] = useState('')
-    const user = useUserContext().user;
-    const userDispatch = useUserContext().dispatch;
-    const transactions = useTransactionContext().transactions;
-    const transactionDispatch = useTransactionContext().dispatch;
+    
+    const {user, userDispatch} = useUserContext()
+    const {transactionDispatch} = useTransactionContext()
 
     function handleTypeChange(e) {
         setCurrentType(e.target.value)
