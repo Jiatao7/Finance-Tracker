@@ -1,12 +1,18 @@
+import { useLogin } from "../hooks/useLogin"
+
 export default function Login() {
-    function handleSubmit(formData) {
-        console.log(formData.get("username"))
-        console.log(formData.get("password"))
+    const {login, error, isLoading} = useLogin()
+
+    const handleSubmit = async(formData) => {
+        const username = formData.get("username")
+        const password = formData.get("password")
+
+        await login(username, password)
     }
 
     return (
         <form className="bg-white rounded-lg shadow-2xl p-6 mb-16 max-w-lg space-y-4 mx-auto" action={handleSubmit} >
-            <h3 className="text-xl font-bold text-gray-800 mb-8 text-center">Login</h3>
+            <h3 className="text-xl font-bold text-gray-800 mb-8 text-center">Log In</h3>
 
             <label htmlFor="username" className="block text-sm font-medium text-gray-700" >
                 Username
@@ -19,11 +25,18 @@ export default function Login() {
             <input id="password" type="password" name="password" placeholder="Enter password" autoComplete="on" className="w-full px-3 py-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent" />
         
             <button
+                disabled={isLoading}
                 type="submit"
                 className="w-full bg-yellow-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400"
             >
                 Log In
             </button>
+
+            {error && (
+                <div className="text-red-600 text-sm mt-2">
+                {error}
+                </div>
+            )}
         </form>
     )
 }

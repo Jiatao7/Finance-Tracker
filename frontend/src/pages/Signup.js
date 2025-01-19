@@ -7,7 +7,7 @@ export default function Signup() {
         const username = formData.get("username")
         const password = formData.get("password")
 
-        signup(username, password)
+        await signup(username, password)
     }
 
     return (
