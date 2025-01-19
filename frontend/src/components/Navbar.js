@@ -16,8 +16,12 @@ const Navbar = () => {
         <Link to="/" className='font-semibold text-2xl'>Finance Tracker</Link>
       </div>
       <div className="links">
-        <Link to="/transactions" className='p-2 m-2 text-lg'>Transactions</Link>
-        <Link to="/statistics" className='p-2 m-2 text-lg'>Statistics</Link>
+        {user && (
+          <>
+            <Link to="/transactions" className='p-2 m-2 text-lg'>Transactions</Link>
+            <Link to="/statistics" className='p-2 m-2 text-lg'>Statistics</Link>
+          </>
+        )}
         {user ? (
           <Link onClick={handleClick} className='p-2 m-2 text-lg cursor-pointer'>Log out</Link>
         ) :

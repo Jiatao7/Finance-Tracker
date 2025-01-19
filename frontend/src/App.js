@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route} from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
 import { useEffect } from "react"
 import { useUserContext } from './context/UserContext'
 import { useTransactionContext } from './context/TransactionContext'
@@ -14,12 +14,14 @@ import Statistics from './pages/Statistics'
 import Navbar from './components/Navbar'
 
 function App() {
+  const user = useUserContext().user
   const userDispatch = useUserContext().dispatch
   const transactionDispatch = useTransactionContext().dispatch
 
   useEffect(() => {
     const guestId = "67797fe6e381cf8e59450303"
 
+    /*
     //Set user data
     const fetchUser = async() => {
       const result = await fetch(`/api/users/${guestId}`)
@@ -27,6 +29,7 @@ function App() {
       userDispatch({type: "SET", payload: data}) 
     }
     fetchUser()
+    */
 
     //Set transactions data
     const fetchTransactions = async() => {
@@ -43,12 +46,12 @@ function App() {
         <Navbar />
         <div className='pages m-16'>
           <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/signup' element={<Signup />} />
-            <Route path='/transactions' element={<Transactions />} />
-            <Route path='/budget' element={<Budget />} />
-            <Route path='/statistics' element={<Statistics />} />
+            <Route path='/' element={user ? <Home /> : <Navigate to="/login"/>} />
+            <Route path='/login' element={!user ? <Login /> : <Navigate to="/"/>} />
+            <Route path='/signup' element={!user ? <Signup /> : <Navigate to="/"/>} />
+            <Route path='/transactions' element={user ? <Transactions /> : <Navigate to="/login"/>} />
+            <Route path='/budget' element={user ? <Budget /> : <Navigate to="/login"/>} />
+            <Route path='/statistics' element={user ? <Statistics /> : <Navigate to="/login"/>} />
           </Routes>
         </div>  
       </BrowserRouter>
