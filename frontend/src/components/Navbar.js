@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom'
 import { useLogout } from '../hooks/useLogout'
+import { useUserContext } from '../context/UserContext'
 
 const Navbar = () => {
   const { logout } = useLogout()
+  const user = useUserContext().user
 
   function handleClick() {
     logout()
   }
-
 
   return (
     <nav className="navbar bg-yellow-400 flex justify-between px-12 py-8 mb-8">
@@ -17,9 +18,14 @@ const Navbar = () => {
       <div className="links">
         <Link to="/transactions" className='p-2 m-2 text-lg'>Transactions</Link>
         <Link to="/statistics" className='p-2 m-2 text-lg'>Statistics</Link>
-        <Link to="/login" className='p-2 m-2 text-lg'>Log In</Link>
-        <Link to="/signup" className='p-2 m-2 text-lg'>Sign Up</Link>
-        <Link onClick={handleClick} className='p-2 m-2 text-lg cursor-pointer'>Log out</Link>
+        {user ? (
+          <Link onClick={handleClick} className='p-2 m-2 text-lg cursor-pointer'>Log out</Link>
+        ) :
+          (<>
+            <Link to="/login" className='p-2 m-2 text-lg'>Log In</Link>
+            <Link to="/signup" className='p-2 m-2 text-lg'>Sign Up</Link>
+          </>)
+        }        
       </div>
     </nav>
   )
