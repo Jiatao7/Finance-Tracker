@@ -7,10 +7,7 @@ import StatsCard from './StatsCard';
 import ExpensesChart from "./ExpensesChart"
 
 export default function Expenses() {
-    const user = useUserContext().user;
-    const userDispatch = useUserContext().dispatch;
-    const transactions = useTransactionContext().transactions;
-    const transactionDispatch = useTransactionContext().dispatch;
+    const {transactions} = useTransactionContext();
 
     //Amount per category
     const [categories, setCategories] = useState({
@@ -72,11 +69,11 @@ export default function Expenses() {
     return (
         <>
             <div className='flex justify-between items-center my-8'>
-                <StatsCard title="Expense Categories by Amount Spent" data={categories} money={true}/>
+                <StatsCard title="Expense Categories by Amount Spent" data={categories} money={true} key={"Expense Categories by Amount Spent"}/>
                 <ExpensesChart categories={categories} label="Amount Spent"></ExpensesChart>
             </div>
             <div className='flex justify-between items-center my-8'>
-                <StatsCard title="Expense Categories by Transactions" data={categoriesCount}/>
+                <StatsCard title="Expense Categories by Transactions" data={categoriesCount} key={"Expense Categories by Transactions"}/>
                 <ExpensesChart categories={categoriesCount} label="# of Transactions" money={false}></ExpensesChart>
             </div>
         </>

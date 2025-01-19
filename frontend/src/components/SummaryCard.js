@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import { useUserContext } from '../context/UserContext'
 import { useTransactionContext } from '../context/TransactionContext'
@@ -6,10 +5,8 @@ import { useTransactionContext } from '../context/TransactionContext'
 import StatsCard from './StatsCard';
 
 export default function SummaryCard() {
-    const user = useUserContext().user;
-    const userDispatch = useUserContext().dispatch;
-    const transactions = useTransactionContext().transactions;
-    const transactionDispatch = useTransactionContext().dispatch;
+    const {user} = useUserContext();
+    const {transactions} = useTransactionContext();
     
     const [income, setIncome] = useState(0)
     const [expenses, setExpenses] = useState(0)
@@ -35,7 +32,7 @@ export default function SummaryCard() {
 
     return (
         <div className='ml-64 mr-32 my-16'>
-            <StatsCard title={"Summary for " + (user ? user.name : null)} data={{income, expenses, net}} money={true}/>        
+            <StatsCard title={"Summary for " + (user ? user.username : null)} data={{income, expenses, net}} money={true} key={"Summary Card"}/>        
         </div>
     )
 }
