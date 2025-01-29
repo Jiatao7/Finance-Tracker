@@ -2,8 +2,12 @@
 const express = require("express")
 const router = express.Router()
 
-//Import controller
+//Import controller and middleware
 const {getTransactions, getUserTransactions, getTransaction, createTransaction, deleteTransaction, updateTransaction} = require("../controllers/transactionController")
+const requireAuth = require('../middleware/requireAuth')
+
+// Use middleware
+router.use(requireAuth)
 
 // GET all Transactions
 router.get('/', getTransactions)

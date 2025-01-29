@@ -7,7 +7,7 @@ export default function TransactionForm () {
     const [error, setError] = useState(null)
     const [currentType, setCurrentType] = useState('')
     
-    const {user, userDispatch} = useUserContext()
+    const {user, token, userDispatch} = useUserContext()
     const {transactionDispatch} = useTransactionContext()
 
     function handleTypeChange(e) {
@@ -24,7 +24,7 @@ export default function TransactionForm () {
         const newTransaction = {userId, description, type, amount, category}
         console.log(newTransaction)
 
-        const response = await fetch('/api/transactions', {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(newTransaction)})
+        const response = await fetch('/api/transactions', {method: "POST", headers: {"Content-Type": "application/json", "Authorization": `Bearer ${token}`}, body: JSON.stringify(newTransaction)})
         const result = await response.json()
 
         if(!response.ok) {

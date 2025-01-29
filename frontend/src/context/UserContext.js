@@ -19,13 +19,13 @@ const UserReducer = (state, action) => {
     switch(action.type) {
         case "CHANGE_BALANCE":
             console.log(state)
-            return( {user: {...state.user, balance: action.payload}} )       //payload is new balance
-        default:
-            return state
+            return( {user: {...state.user, balance: action.payload}, token: state.token} )       //payload is new balance
         case "LOGIN":
-            return {user: action.payload}  //payload is data
+            return action.payload             //payload is data (user + token)
         case "LOGOUT":
             return {user: null, token: null}
+        default:
+            return state
     }
 }
 
@@ -36,10 +36,12 @@ export const UserContextProvider = ({children}) => {
     useEffect(() => {    
         //Set user data
         const username = localStorage.getItem('username')
-        if(username) {
+        const token = localStorage.getItem('token')
+        if(username && token) {
             const fetchUser = async() => {
                 const result = await fetch(`/api/users/username/${username}`)
-                const data = await result.json()
+                const user = await result.json()
+                const data = {user, token}
                 dispatch({type: "LOGIN", payload: data}) 
             }    
             fetchUser()

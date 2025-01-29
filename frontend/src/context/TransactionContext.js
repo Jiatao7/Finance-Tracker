@@ -31,16 +31,19 @@ export const TransactionContextProvider = ({children}) => {
         transactions: []
     })
 
-    const {user} = useUserContext()
+    const {user, token} = useUserContext()
 
     useEffect(() => {
+        //Set transactions data
+        const fetchTransactions = async() => {
+            const result = await fetch(`/api/transactions/user/${user._id}`, {
+                headers: {"Authorization": `Bearer ${token}`}
+            })
+            const data = await result.json()
+            dispatch({type: "SET", payload: data})
+        }
+            
         if(user) {
-            //Set transactions data
-            const fetchTransactions = async() => {
-                const result = await fetch(`/api/transactions/user/${user._id}`)
-                const data = await result.json()
-                dispatch({type: "SET", payload: data}) 
-            }
             fetchTransactions()
         } else {
             dispatch({type: "SET", payload: null}) 
