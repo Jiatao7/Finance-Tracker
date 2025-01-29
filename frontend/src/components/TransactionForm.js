@@ -15,13 +15,13 @@ export default function TransactionForm () {
     }
 
     async function handleSubmit(formData) {
-        const userId = user._id
+        //const userId = user._id
         const description = formData.get('description')
         const type = formData.get('type')
         const amount = Number(formData.get('amount'))
         const category = (type === "Income" ? "Salary" : formData.get("category"))
 
-        const newTransaction = {userId, description, type, amount, category}
+        const newTransaction = {description, type, amount, category}
         console.log(newTransaction)
 
         const response = await fetch('/api/transactions', {method: "POST", headers: {"Content-Type": "application/json", "Authorization": `Bearer ${token}`}, body: JSON.stringify(newTransaction)})

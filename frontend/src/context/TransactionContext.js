@@ -36,7 +36,7 @@ export const TransactionContextProvider = ({children}) => {
     useEffect(() => {
         //Set transactions data
         const fetchTransactions = async() => {
-            const result = await fetch(`/api/transactions/user/${user._id}`, {
+            const result = await fetch(`/api/transactions`, {
                 headers: {"Authorization": `Bearer ${token}`}
             })
             const data = await result.json()

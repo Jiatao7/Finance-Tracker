@@ -3,7 +3,7 @@ const express = require("express")
 const router = express.Router()
 
 //Import controller and middleware
-const {getTransactions, getUserTransactions, getTransaction, createTransaction, deleteTransaction, updateTransaction} = require("../controllers/transactionController")
+const {getTransactions, getTransaction, createTransaction, deleteTransaction, updateTransaction} = require("../controllers/transactionController")
 const requireAuth = require('../middleware/requireAuth')
 
 // Use middleware
@@ -11,9 +11,6 @@ router.use(requireAuth)
 
 // GET all Transactions
 router.get('/', getTransactions)
-
-// GET all Transactions from a SINGLE USER
-router.get('/user/:id', getUserTransactions)
 
 // GET a single Transaction
 router.get('/:id', getTransaction)

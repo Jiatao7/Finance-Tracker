@@ -20,7 +20,6 @@ router.get('/:id', getUser)
 // GET a single User by Username
 router.get('/username/:username', getUserByUsername)
 
-
 // POST a new User
 router.post('/', createUser)
   

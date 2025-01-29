@@ -3,14 +3,8 @@ const Transaction = require('../models/transactionModel')
 
 // GET all transactions
 const getTransactions = async (req, res) => {
-    const transactions = await Transaction.find().sort({date: -1})
-    res.status(200).json(transactions)
-}
-
-// GET all transactions from a SINGLE USER
-const getUserTransactions = async (req, res) => {
-    const id = req.params.id        //user id
-    const transactions = await Transaction.find({userId: id}).sort({date: -1})
+    const userId = req.user._id
+    const transactions = await Transaction.find( {userId} ).sort({date: -1})
     res.status(200).json(transactions)
 }
 
@@ -24,7 +18,8 @@ const getTransaction = async (req, res) => {
 // POST a new transaction
 const createTransaction = async (req, res) => {
     try {
-        const data = req.body;
+        const userId = req.user._id
+        const data = {...req.body, userId};
         const transaction = await Transaction.create(data)
         res.status(200).json(transaction)
     } catch (error) {
@@ -47,4 +42,4 @@ const updateTransaction = async (req, res) => {
     res.status(200).json(transaction)
 }
 
-module.exports = {getTransactions, getUserTransactions, getTransaction, createTransaction, deleteTransaction, updateTransaction}
+module.exports = {getTransactions, getTransaction, createTransaction, deleteTransaction, updateTransaction}
