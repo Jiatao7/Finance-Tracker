@@ -10,6 +10,7 @@ import Transactions from './pages/Transactions'
 import Budget from './pages/Budget'
 import Statistics from './pages/Statistics'
 import Loading from './pages/Loading'
+import PageNotFound from './pages/PageNotFound'
 
 import Navbar from './components/Navbar'
 
@@ -54,6 +55,7 @@ function App() {
             <Route path='/transactions' element={user && !user.new ? <Transactions /> : <Navigate to="/"/>} />
             <Route path='/budget' element={user && !user.new ? <Budget /> : <Navigate to="/"/>} />
             <Route path='/statistics' element={user && !user.new ? <Statistics /> : <Navigate to="/"/>} />
+            <Route path='*' element={<PageNotFound />} />
           </Routes>
         </div>
       </BrowserRouter>
