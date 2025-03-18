@@ -2,7 +2,6 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 const bcrypt = require('bcrypt')
 
-
 const defaultBudget = {
     Housing: 0,
     Transportation: 0,
@@ -13,9 +12,9 @@ const defaultBudget = {
     Miscellaneous: 0,
 };
 
-
 const userSchema = new Schema({
     username: {type: String, required: true, unique: true},
+    displayName: {type: String, default: ""},
     password: {type: String, required: true},
     balance: {type: Number, default: 0},
     budget: {type: Object, default: defaultBudget},
@@ -70,7 +69,7 @@ userSchema.statics.signup = async function (username, password) {
     const hash = await bcrypt.hash(password, salt)
 
     //Create account
-    const user = await this.create({ username, password: hash, name: username })
+    const user = await this.create({ username, password: hash, displayName: username })
     return user
 }
 
