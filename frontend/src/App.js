@@ -9,11 +9,12 @@ import Setup from './pages/Setup'
 import Transactions from './pages/Transactions'
 import Budget from './pages/Budget'
 import Statistics from './pages/Statistics'
+import Loading from './pages/Loading'
 
 import Navbar from './components/Navbar'
 
 function App() {
-  const {user} = useUserContext()
+  const {user, loading} = useUserContext()
 
   const determineDefaultPath = () => {
     if(user) {
@@ -26,11 +27,24 @@ function App() {
       return <Navigate to="login" />;
     }
   }
+  
+  if (loading) {
+    return (
+      <div className="App">
+        <BrowserRouter>
+          <Navbar loading={true}/>
+          <div className='pages m-16'>
+            <Loading />
+          </div>
+        </BrowserRouter>
+      </div>
+    )
+  }
 
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar />
+        <Navbar loading={false}/>
         <div className='pages m-16'>
           <Routes>
             <Route path='/' element={determineDefaultPath()} />

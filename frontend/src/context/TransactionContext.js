@@ -46,7 +46,7 @@ export const TransactionContextProvider = ({children}) => {
         if(user) {
             fetchTransactions()
         } else {
-            dispatch({type: "SET", payload: null}) 
+            dispatch({type: "SET", payload: []}) 
         }
     }, [user])
 

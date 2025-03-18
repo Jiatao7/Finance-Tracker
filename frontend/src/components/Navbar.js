@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useLogout } from '../hooks/useLogout'
 import { useUserContext } from '../context/UserContext'
 
-const Navbar = () => {
+const Navbar = ({loading}) => {
   const { logout } = useLogout()
   const user = useUserContext().user
 
@@ -12,6 +12,16 @@ const Navbar = () => {
   
   function handleClick() {
     logout()
+  }
+
+  if(loading) {
+    return (
+      <nav className="navbar bg-yellow-400 flex justify-between px-12 py-8 mb-8">
+        <div className="site-title">
+          <Link to="/" className='font-semibold text-2xl'>Finance Tracker</Link>
+        </div>
+      </nav>
+    )
   }
 
   return (

@@ -1,4 +1,4 @@
-import {createContext, useContext, useReducer, useEffect} from "react"
+import {createContext, useState, useContext, useReducer, useEffect} from "react"
 
 //Create Context
 export const UserContext = createContext()
@@ -33,7 +33,8 @@ const UserReducer = (state, action) => {
 //Create provider for context
 export const UserContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(UserReducer, {user: null, token: null})
-    
+    const [loading, setLoading] = useState(true)
+
     useEffect(() => {    
         //Set user data
         const username = localStorage.getItem('username')
@@ -44,15 +45,18 @@ export const UserContextProvider = ({children}) => {
                 const user = await result.json()
                 const data = {user, token}
                 dispatch({type: "LOGIN", payload: data}) 
+                setLoading(false)
             }    
             fetchUser()
+        } else {
+            setLoading(false)
         }
     }, [])
 
     console.log("UserContext: ", state)
 
     return (
-        <UserContext.Provider value={{...state, userDispatch: dispatch}}>
+        <UserContext.Provider value={{...state, userDispatch: dispatch, loading}}>
             {children}
         </UserContext.Provider> 
     )
