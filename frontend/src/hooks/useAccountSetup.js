@@ -13,6 +13,7 @@ export const useAccountSetup = () => {
 
     if(!displayName || !accountBalance) {
         setError("Please fill in all fields")
+        setIsLoading(false)
         return;
     }
 
