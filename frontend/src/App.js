@@ -13,7 +13,7 @@ import Statistics from './pages/Statistics'
 import Navbar from './components/Navbar'
 
 function App() {
-  const user = useUserContext().user
+  const {user} = useUserContext()
 
   const determineDefaultPath = () => {
     if(user) {

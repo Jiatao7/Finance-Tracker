@@ -17,13 +17,14 @@ const UserReducer = (state, action) => {
     console.log(action.payload)
 
     switch(action.type) {
-        case "CHANGE_BALANCE":
-            console.log(state)
-            return( {user: {...state.user, balance: action.payload}, token: state.token} )       //payload is new balance
         case "LOGIN":
             return action.payload             //payload is data (user + token)
         case "LOGOUT":
             return {user: null, token: null}
+        case "ACCOUNT_SETUP":
+            return( {user: {...state.user, displayName: action.payload.displayName, balance: action.payload.balance, new: false}, token: state.token} )       //payload is object (with display name and balance)
+        case "CHANGE_BALANCE":
+            return( {user: {...state.user, balance: action.payload}, token: state.token} )       //payload is new balance
         default:
             return state
     }

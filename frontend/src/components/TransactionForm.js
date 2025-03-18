@@ -35,7 +35,7 @@ export default function TransactionForm () {
             transactionDispatch({type: "ADD", payload: result})
 
             //Change balance in React
-            const change = (type === "Income" ? amount : -amount)
+            const change = (type === "Income" ? amount : -1 * amount)
             const newBalance = user.balance + change
 
             console.log("Amount: ", typeof(user.balance))
