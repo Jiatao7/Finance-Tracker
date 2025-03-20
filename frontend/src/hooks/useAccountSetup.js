@@ -17,7 +17,7 @@ export const useAccountSetup = () => {
         return;
     }
 
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${user._id}`, {
+    const response = await fetch(`https://${process.env.REACT_APP_API_URL}/api/users/${user._id}`, {
         method: "PATCH", 
         headers: {"Content-Type": "application/json"}, 
         body: JSON.stringify({displayName, balance: accountBalance, new: false})
