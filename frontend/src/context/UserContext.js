@@ -41,7 +41,7 @@ export const UserContextProvider = ({children}) => {
         const token = localStorage.getItem('token')
         if(username && token) {
             const fetchUser = async() => {
-                const result = await fetch(`/api/users/username/${username}`)
+                const result = await fetch(`${process.env.REACT_APP_API_URL}/api/users/username/${username}`)
                 const user = await result.json()
                 const data = {user, token}
                 dispatch({type: "LOGIN", payload: data}) 

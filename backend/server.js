@@ -1,5 +1,6 @@
 //Modules
 const express = require('express')
+const cors = require('cors')
 const mongoose = require('mongoose')
 const userRoutes = require('./routes/users')
 const transactionRoutes = require('./routes/transactions')
@@ -10,6 +11,7 @@ require('dotenv').config()
 const app = express()
 
 // Middleware
+app.use(cors())
 app.use(express.json())
 app.use((req, res, next) => {
   console.log(req.path, req.method)
@@ -24,7 +26,7 @@ app.use("/api/transactions", transactionRoutes)
 mongoose.connect(process.env.dbURI)
     .then(() => {
         app.listen(process.env.PORT, () => {
-            console.log("Listening")
+            console.log(`Server is running on port ${process.env.PORT}`)
         })
     })
     .catch(error => console.log(error))

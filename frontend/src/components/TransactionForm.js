@@ -24,7 +24,7 @@ export default function TransactionForm () {
         const newTransaction = {description, type, amount, category}
         console.log(newTransaction)
 
-        const response = await fetch('/api/transactions', {method: "POST", headers: {"Content-Type": "application/json", "Authorization": `Bearer ${token}`}, body: JSON.stringify(newTransaction)})
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/transactions`, {method: "POST", headers: {"Content-Type": "application/json", "Authorization": `Bearer ${token}`}, body: JSON.stringify(newTransaction)})
         const result = await response.json()
 
         if(!response.ok) {
@@ -44,7 +44,7 @@ export default function TransactionForm () {
             userDispatch({type: "CHANGE_BALANCE", payload: newBalance})
 
             //Change balance in Database
-            const response = await fetch(`/api/users/${user._id}`, {method: "PATCH", headers: {"Content-Type": "application/json"}, body: JSON.stringify({balance: newBalance})})
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${user._id}`, {method: "PATCH", headers: {"Content-Type": "application/json"}, body: JSON.stringify({balance: newBalance})})
             
             //Set type state back to default
             setCurrentType('')
